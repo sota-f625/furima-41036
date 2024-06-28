@@ -53,15 +53,15 @@
 
 ## addresses テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| post_code     | string     | null: false                    |
-| prefecture_id | references | null: false foreign_key: true  |
-| city          | string     | null: false                    |
-| address       | integer    | null: false                    |
-| building_name | string     |                                |
-| phone_number  | string     | null: false                    |
-| purchase      | references | null: false                    |
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
+| post_code       | string     | null: false |
+| shipping_fee_id | integer    | null: false |
+| city            | string     | null: false |
+| address         | string     | null: false |
+| building_name   | string     |             |
+| phone_number    | string     | null: false |
+| purchase        | references | null: false |
 
 ### Association
 - belongs_to :purchase
