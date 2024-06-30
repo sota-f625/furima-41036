@@ -11,6 +11,4 @@ class User < ApplicationRecord
   validates :last_name_kana, presence: true, format: { with: /\A[\p{katakana}\u30fc]+\z/ }
   validates :first_name_kana, presence: true, format: { with: /\A[\p{katakana}\u30fc]+\z/ }
   validates :birth_day, presence: true
-
-
 end
