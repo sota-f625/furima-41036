@@ -1,4 +1,3 @@
-# spec/factories/users.rb
 FactoryBot.define do
   factory :user do
     nickname { Faker::Name.unique.name }
@@ -8,7 +7,7 @@ FactoryBot.define do
     first_name_kana { 'タロウ' }
     birth_day { Faker::Date.birthday(min_age: 18, max_age: 65) }
     email { Faker::Internet.unique.email }
-    password { Faker::Internet.password(min_length: 6) }
-    password_confirmation { password } # passwordと一致させる
+    password { 'password123' }
+    password_confirmation { password }
   end
 end
