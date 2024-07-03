@@ -14,6 +14,8 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+      # バリデーションエラーをログに出力
+      Rails.logger.error @item.errors.full_messages.join(", ")
       render :new, status: :unprocessable_entity
     end
   end
