@@ -9,7 +9,6 @@
 
     <%= render 'shared/error_messages', model: f.object %>
 
-    <%# 商品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
         商品画像
@@ -22,8 +21,6 @@
         <%= f.file_field :image, id:"item-image" %>
       </div>
     </div>
-    <%# /商品画像 %>
-    <%# 商品名と商品説明 %>
     <div class="new-items">
       <div class="weight-bold-text">
         商品名
@@ -38,9 +35,6 @@
         <%= f.text_area :description, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
       </div>
     </div>
-    <%# /商品名と商品説明 %>
-
-    <%# 商品の詳細 %>
     <div class="items-detail">
       <div class="weight-bold-text">商品の詳細</div>
       <div class="form">
@@ -56,9 +50,6 @@
         <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
       </div>
     </div>
-    <%# /商品の詳細 %>
-
-    <%# 配送について %>
     <div class="items-detail">
       <div class="weight-bold-text question-text">
         <span>配送について</span>
@@ -82,9 +73,6 @@
         <%= f.collection_select(:shipping_day_id, ShippingDay.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
-    <%# /配送について %>
-
-    <%# 販売価格 %>
     <div class="sell-price">
       <div class="weight-bold-text question-text">
         <span>販売価格<br>(¥300〜9,999,999)</span>
@@ -113,9 +101,6 @@
         </div>
       </div>
     </div>
-    <%# /販売価格 %>
-
-    <%# 注意書き %>
     <div class="caution">
       <p class="sentence">
         <a href="#">禁止されている出品、</a>
@@ -133,43 +118,34 @@
         に同意したことになります。
       </p>
     </div>
-    <%# /注意書き %>
-    <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "出品する" ,class:"sell-btn" %>
       <%=link_to 'もどる', root_path, class:"back-btn" %>
     </div>
-    <%# /下部ボタン %>
   </div>
   <% end %>
 
   <script>
-  const price = () => {
-    console.log("Event run"); // デバッグ用ログ
-    const priceInput = document.getElementById("item-price");
-    if (priceInput) {
-      console.log("Price input found."); // デバッグ用ログ
-      priceInput.addEventListener("input", () => {
-        const inputValue = priceInput.value;
-        console.log("Input value:", inputValue); // デバッグ用ログ
+    const price = () => {
+      const priceInput = document.getElementById("item-price");
+      if (priceInput) {
+        priceInput.addEventListener("input", () => {
+          const inputValue = priceInput.value;
 
-        const addTaxDom = Math.floor(inputValue * 0.1);
-        const addTaxDomElement = document.getElementById("add-tax-price");
-        addTaxDomElement.textContent = addTaxDom;
+          const addTaxDom = Math.floor(inputValue * 0.1);
+          const addTaxDomElement = document.getElementById("add-tax-price");
+          addTaxDomElement.textContent = addTaxDom;
 
-        const salesProfit = Math.floor(inputValue * 0.9);
-        const salesProfitElement = document.getElementById("profit");
-        salesProfitElement.textContent = salesProfit;
-      });
-    } else {
-      console.log("Price input not found."); // デバッグ用ログ
-    }
-  };
+          const salesProfit = Math.floor(inputValue * 0.9);
+          const salesProfitElement = document.getElementById("profit");
+          salesProfitElement.textContent = salesProfit;
+        });
+      }
+    };
 
-  document.addEventListener("DOMContentLoaded", price);
-  document.addEventListener("turbo:render", price);
-  console.log("Price activated"); // デバッグ用ログ
-</script>
+    document.addEventListener("DOMContentLoaded", price);
+    document.addEventListener("turbo:render", price);
+  </script>
 
   <footer class="items-sell-footer">
     <ul class="menu">
