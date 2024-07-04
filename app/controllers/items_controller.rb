@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-  before_action :set_item, only: [:show]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update]
+  before_action :correct_user, only: [:edit, :update]
+
 
   def index
     @items = Item.order(created_at: :desc)
@@ -25,6 +27,17 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to @item, notice: '商品情報が更新されました。'
+    else
+      render :edit
+    end
+  end
+
   private
 
   def item_params
@@ -33,5 +46,9 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def correct_user
+    redirect_to root_path unless current_user == @item.user
   end
 end
