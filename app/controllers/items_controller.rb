@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to @item, notice: '商品情報が更新されました。'
+      redirect_to @item
     else
       render :edit
     end
