@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
+  has_one :purchase
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -24,7 +25,7 @@ class Item < ApplicationRecord
     errors.add(:image, 'を選択してください') unless image.attached?
   end
 
-  # def sold_out
-  #   purchase.present?
-  # end
+  def sold_out
+    purchase.present?
+  end
 end
