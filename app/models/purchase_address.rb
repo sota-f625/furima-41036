@@ -10,7 +10,7 @@ class PurchaseAddress
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "is invalid" }
     validates :user_id
     validates :item_id
-    validates :token, presence: true
+    validates :token
   end
 
   def save

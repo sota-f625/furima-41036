@@ -15,7 +15,6 @@ const pay = () => {
     e.preventDefault();
     payjp.createToken(numberElement).then(function (response) {
       if (response.error) {
-        console.log(response.error);
       } else {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
