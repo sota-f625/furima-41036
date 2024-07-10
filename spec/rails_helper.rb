@@ -35,6 +35,8 @@ end
 RSpec.configure do |config|
   # Include FactoryBot methods
   config.include FactoryBot::Syntax::Methods
+  # Include Devise test helpers
+  config.include Devise::Test::IntegrationHelpers, type: :request
    # Capybara configuration
    config.before(:each, type: :system) do
     driven_by :rack_test
